@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Sage Invoices</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div th:if="${not #lists.isEmpty(invoices)}">
+        <h2>Invoice List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="invoice : ${invoices}">
+                <td th:text="${invoice.id}"><a href="/invoice/${invoice.id}">Id</a></td>
+                <td th:text="${invoice.date}">Product Id</td>
+                <td th:text="${invoice.customer.name}">Customer</td>
+                <td th:text="${invoice.description}">Descirption</td>
+                <td th:text="${invoice.amount}">Amount</td>
+                <td th:text="${invoice.status}">Status</td>
+
+                <td><a th:href="${ '/invoice/' + invoice.id}">View</a></td>
+                <td><a th:href="${'/invoice/edit/' + invoice.id}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
